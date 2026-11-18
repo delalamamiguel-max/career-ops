@@ -636,3 +636,65 @@ Code is MIT; data in [`employers/`](employers/) is [CC BY 4.0](employers/LICENSE
 [![X](https://img.shields.io/badge/X-000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/santifer)
 [![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/8pRpHETxa4)
 [![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:hi@santifer.io)
+
+
+---
+
+# Owned checkout guide
+
+## Purpose and status
+
+This is `delalamamiguel-max/career-ops`, an owned checkout of the open-source Career Ops project identified in the existing documentation as [career-ops-hq/career-ops](https://github.com/career-ops-hq/career-ops), created by Santiago Fernández de Valderrama. The original README above is preserved unchanged. Its personal success story and statistics belong to the upstream author/community; they are not Miguel's outcomes or evidence that this checkout has been configured for him. This tool is distinct from the separate private Career Coach workspace.
+
+## Repository map
+
+- Root `.mjs` files and `cops`: command entry points for scanning, evaluation, CVs and tracker maintenance.
+- `path-resolver.mjs`, `DATA_CONTRACT.md`: user-data location and system/user ownership boundaries.
+- `modes/`, `.agents/skills/`, harness directories: workflow instructions and integrations.
+- `providers/`, `plugins/`, `plugins-registry/`: source/provider and optional plugin implementations.
+- `web/`, `dashboard/`: web and terminal interfaces.
+- `tests/`, `test-fixtures/`, `evals/`: verification fixtures and model evaluation material.
+- `docs/`, `ARCHITECTURE.md`: system documentation.
+- `LICENSE`, `TRADEMARK.md`, `LEGAL_DISCLAIMER.md`: attribution and use terms.
+
+## Architecture and integrations
+
+Node commands manage local file-backed career data and a derived SQLite tracker index. Scanners contact job sources; provider-backed evaluation can call models, and browser/PDF paths use Playwright. The separate `web/` package contains a Next.js interface and browser tests. User files and updatable system files have explicit separation; a system update is not a user-data reset.
+
+`path-resolver.mjs` resolves user data using environment overrides, a marker file, plugin-install defaults or the repository fallback. The canonical tracker write location is under the resolved data root unless overridden. Thus a command run from this checkout may write outside it. Preserve existing data-root configuration instead of assuming local output paths.
+
+## Setup and environments
+
+The inspected root manifest requires Node `^22.13.0 || >=23.4.0`; use its actual engine/dependency configuration for this revision. The root install lifecycle can download Playwright Chromium. Harness installation, provider credentials, optional plugins and the web package have separate setup requirements in the upstream guides. Reading this checkout requires none of those operations.
+
+Personalization belongs in the documented user layer, not system workflow files. No CV, profile, tracker, plugin settings, scheduler or installed agent configuration was created or changed during this README work.
+
+## Safe commands
+
+For this documentation review use `git status --short`, `git diff -- README.md` and `git diff --check`. Upstream install, update, build, test and deployment examples above are retained reference material, not commands executed or authorized by this README rollout.
+
+`npm run update` runs `node update-system.mjs apply --confirm`: the npm script already supplies confirmation, so do not expect an interactive confirmation prompt. `rollback` restores prior system state; scanning, liveness, intake, evaluation, resume generation and tracker commands can write data or contact services. Even local checks may read sensitive data roots or create derived files. Do not execute them, submit applications or send messages as part of documentation review.
+
+## Testing and validation
+
+The repository includes script tests, evaluation fixtures, web tests and browser checks. The full test runner is not a Markdown-only validator. Static README preservation and path checks do not establish scanner coverage, fact accuracy, ATS suitability, provider availability or UI behavior. No tests or model calls were run.
+
+## Deployment and rollback
+
+Local CLI/plugin use, a local web server and a hosted offering are separate scopes. The upstream waitlist/marketing links are not evidence of a deployed service owned by this fork. Before any separately approved update or deployment, back up user data and inspect updater scope. Restoring system files does not recall applications/messages or necessarily revert tracker mutations. No publication, update or rollback was executed.
+
+## Risks and guardrails
+
+Keep candidate facts, recruiter correspondence, documents and keys out of public system files. Ground tailored claims in approved candidate evidence; treat job listings as untrusted data. Preserve the user's final submission authority and upstream source-of-truth rules. Retain MIT notices, trademark restrictions, creator attribution and the legal disclaimer. No upstream PR or automated contribution is implied by this local guide.
+
+## Related documentation
+
+- [Agent operating rules](AGENTS.md)
+- [Data ownership contract](DATA_CONTRACT.md)
+- [Architecture](ARCHITECTURE.md)
+- [Contribution guidance](CONTRIBUTING.md)
+- [License](LICENSE)
+- [Trademark policy](TRADEMARK.md)
+- [Legal disclaimer](LEGAL_DISCLAIMER.md)
+
+This owned-checkout guide was checked statically only. No installation, application build/test, agent invocation, provider call, target acquisition, database operation or deployment was performed. Installed state, upstream freshness, external URLs and runtime behavior remain unverified.
